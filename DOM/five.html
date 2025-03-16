@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Edit and Removal</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li = document.createElement("li")
+        li.innerHTML = `${langName}` // This may be resource intensive because innerHTML traverses the whole DOM tree
+        const lang = document.querySelector(".language")
+        lang.appendChild(li)
+    }
+
+    addLanguage("python")
+    addLanguage("typescript")
+
+    function addOptiLanguage(langName) {
+        const li = document.createElement("li")
+        li.appendChild(document.createTextNode(`${langName}`))
+        document.querySelector(".language").appendChild(li)
+    } // This function is doing the same but it is a different way, we can say it is a bit more optimized
+
+    addOptiLanguage("Ruby on Rails")
+
+    // Edit a DOM element
+    const secondLang = document.querySelector("li:nth-child(2)") // -> This is a CSS selector
+    // secondLang.innerHTML = "Mojo" -> We can use this but this is more resource intensive
+
+    const newLi = document.createElement("li")
+    newLi.textContent = "Mojo"
+    secondLang.replaceWith(newLi) // We can use replaceWith to replace a current element with another element 
+
+    // Another way to edit
+    const firstLang = document.querySelector("li:first-child")
+    firstLang.outerHTML = `<li>Typescript</li>` // We can also change the whole outer HTML
+
+    // Remove an element
+    const lastLang = document.querySelector("li:last-child")
+    lastLang.remove()
+</script>
+</html>
