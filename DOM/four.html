@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM |Element Creation</title>
+</head>
+<body style="background-color: #212121; color: #fff">
+    
+</body>
+<script>
+    const div = document.createElement("div")
+    console.log(div);
+    div.className = "main"
+    div.id = Math.round(Math.random() * 10 + 1)
+    div.setAttribute("title", "Sword Art Online")
+    div.style.backgroundColor = "green"
+    div.style.padding = "12px"
+    // We can add text to this element in two ways
+    // One is: we can set it's innerHTML to our desired text
+    // People often comment that this method is more compute heavy because we are first getting the innerHTML value and then changing it
+    // div.innerHTML = "Pawang Rai"
+
+    // Another way is to create a new text node and then append this text node to our div.
+    // People say this is more complex and requires two steps to do
+    const text = document.createTextNode("Pawang Rai")
+    div.appendChild(text)
+    document.body.appendChild(div)
+
+    const textarr = ["SAO", "DBZ", "AOT", "JJK", "Kaguya Sama"]
+    const colorarr = ["yellow", "blue", "green", "red", "pink"]
+    function createNewDivs(arr1, arr2) {
+        for (let i = 0; i < arr1.length; i++) {
+            const div = document.createElement("div")
+            div.innerHTML = arr1[i]
+            div.style.color = arr2[i]
+            document.body.append(div)
+        }
+    }
+    createNewDivs(textarr, colorarr)
+</script>
+</html>
+
+<!-- We can create elements using the createElement method then pass in the element which we want to create.
+ 
+We can assign it classes and id
+
+We can also set attributes to it using setAttribute
+
+After creating the element, all we have to do is append it using the appendChild() to our parent node which in this case is our body.
+
+appendChild() appends a single node, append() appends multiple nodes.
+
+-->
