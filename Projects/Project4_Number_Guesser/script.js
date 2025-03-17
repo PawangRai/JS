@@ -48,7 +48,7 @@ function validateGuess(guess) {
 
 function checkGuess(guess){
     if (guess === randomNumber){
-        displayMessage("You won")
+        displayMessage("You won!! Congratulations")
         endGame()
     } else if (guess < randomNumber){
         displayMessage("Number is tooo low")
@@ -88,7 +88,6 @@ function newGame(){
         remaining.innerHTML = `${11-numGuess}`
         userInput.removeAttribute("disabled")
         startOver.removeChild(p)
-
 
         playGame = true
     })

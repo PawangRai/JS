@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html Events </title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    /* We can directly inject events to HTML tags but that code is not scalable, so we should avoid doing that
+    
+    OR
+
+    We can select an element and apply events directly on the tag
+    */
+
+    /*
+    document.getElementById("owl").onclick = function(){
+        alert("owl clicked")
+    }
+    The above method is also good but this gives us limited information.
+    Adding event listeners gives us propabation abilities
+
+    attachEvent exists in internet explorer
+    jQuery also has onEvent
+
+    Events to read about:
+    type, timestamp, defaultprevented, target, toElement, srcElement, currentTarget
+
+    clientX, clientY, screenX, screenY
+    altkey, ctrlkey, shiftkey, keyCode
+
+    */
+
+    document.getElementById("images").addEventListener("click", function(e){
+        // console.log("Clicked inside the ul");
+
+    }, false) // The third parameter which is by default false, tells how you want to handle event propagation. 
+    // if it is false, then it is called event propogation which means if two event listeners are applied on the same tag, then events will propagate from the inner most element to the outer most element.
+
+    // if it is true, then it is called event capturing which means if two event listeners are applied on the same tag, then events will propagate from outer most element to inner most element. 
+
+    // If one is true and the other one is false, then which ever one is true will be fired first.
+
+    document.getElementById("owl").addEventListener("click", function(e){
+        // console.log("owl clicked");
+
+        // if we want to stop the propagration, we can use event.stopPropagation(). This will stop the event from bubbling to the parent element
+    }, true)
+
+    // There is also event.preventDefault() which stops the default behavior of the element. If it is a form then it will stop the form from submitting. If it is a anchor tag that leads to some other link then it will not go there
+
+    document.getElementById("google").addEventListener("click", function(e){
+        console.log("google clicked");
+        e.preventDefault()
+    })
+
+    document.querySelector("#images").addEventListener("click", function(e){
+        console.log(e.target.tagName); 
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode;
+            removeIt.remove()
+        }
+        // But there is a problem with this method, if we click on image, it's parent is li so we can remove it. But the Google is an anchor tag, if we click outside of it, it will be the same as selecting the li and removing it's parent which in this case is the ul so the entire ul of images gets removed. 
+
+        // We can also use another method
+        // removeIt.parentNode.removeChild(removeIt) -> This is a bit tricky to understand, get img's parent node which is li, get it's parent node which is ul, then finally remove it's child, which is li. Another way is to directly use remove(). Both are good
+
+    }, false)
+
+    // e.target gives which target is giving rise to the event
+
+
+
+</script>
+</html>
