@@ -19,3 +19,5 @@ form.addEventListener("submit", function(e){
         results.innerHTML = `<span>${bmi}</span>`
     }
 })
+
+/* We get the form object and when its submitted, we first prevent its default action. Then we get the values for weight and height in numbers. Then we apply some validation to check for empty values, negative values and NaN values. After it has passed those checks, we calcualte the BMI and display it on the screen */
