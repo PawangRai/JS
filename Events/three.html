@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript and Typescript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    const start = document.getElementById("start")
+    const stop = document.getElementById("stop")
+
+    let interval
+
+    start.addEventListener("click", function(e){
+        interval = setInterval(sayDate, 1000, "Pawang")
+    })
+
+    stop.addEventListener("click", function(e){
+        clearInterval(interval)
+    })
+
+    const sayDate = function(name){
+        console.log(`${name}, ${Date.now()}`);
+    }
+    // setInterval(sayDate, 2000, "Pawang")
+
+
+    // setInterval is a method that takes in a callback which is repeated indefinately after the specified time in milliseconds. We can also pass in a third parameter to the setInterval function which will be passed as a parameter to our callback and then we can make changes to our callback function accordingly.
+
+    // We can also stop this setInterval function by using clearInterval() which takes in the reference of the setInterval() callback
+</script>
+</html>

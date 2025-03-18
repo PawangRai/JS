@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Events in Javascript</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    function sayMyName(){
+        console.log("Pawang Rai")
+    }
+    setTimeout(sayMyName, 2000)
+    const changeText = function(){
+        document.querySelector("h1").innerHTML = `Sword Art Online has the best anime openings.`
+    }
+
+    const changeMe = setTimeout(changeText, 3000)
+    
+
+    document.querySelector("#stop").addEventListener("click", function(e){
+        clearTimeout(changeMe)
+    })
+
+    // setTimeout() is a function that takes in a callback and time in milliseconds after which to call the callback. 
+
+    // we can also use clearTimeout() and pass the reference of the timeout we want to clear and then the timeout will be cleared.
+</script>
+</html>
