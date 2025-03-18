@@ -12,6 +12,7 @@ Javascript runs programs into 2 phases
 2. Execution Phase
 
 Let's take a code example
+``` html
 let val1 = 10
 let val2 = 5
 function addNum(num1,num2){
@@ -20,7 +21,7 @@ function addNum(num1,num2){
 }
 let result1 = addNum(val1,val2)
 let result2 = addNum(10,2)
-
+```
 Step 1: Global Execution or Global Environment
 Allocated by this keyword
 
