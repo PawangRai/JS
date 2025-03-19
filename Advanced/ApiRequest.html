@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <div class="card" style="display: flex;"></div>
+    
+</body>
+<script>
+    const requestUrl = "https://api.github.com/users/pawangrai"
+    const xhr = new XMLHttpRequest() // We create an object of the XMLHttpRequest(), after that we open the request and send it to our desired url and also how we want to send the request. This does not actually send the request, we have to use the .send() method to actually send it.
+    xhr.open("GET", requestUrl)
+    let imgUrl = ""
+    let followers = ""
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState); // .readyState property gives the current status of our request
+        if (xhr.readyState === 4) { // When the status code is 4, meaning the operation is complete, we get some responseText as an output
+            // console.log(this.responseText); // we have to specify the responseText as this.responseText otherwise, we will not get the output. this.responseText is the actual output we get from the api we just called.
+
+            const data = this.responseText
+            console.log(data.followers); // This should work, however the data we get is not in object form but in string form, in order to use it, we must first parse it as a string
+
+            const newData = JSON.parse(this.responseText)
+            console.log(newData.followers); // This gives us the correct output
+            followers = newData.followers
+            imgUrl = newData.avatar_url
+
+            console.log(imgUrl, followers);
+    document.querySelector(".card").innerHTML = `
+    <img src = '${imgUrl} height='150' width='150' style='border-radius: 20px'>
+    <p style='display: flex
+;
+    align-items: center;
+    margin-left: 30px;'>followers: ${followers}</p>
+    `
+        }
+
+    } // .onreadystatechange() method continuously tracks the request and how it changes during the whole sending process.
+    xhr.send()
+</script>
+</html>
