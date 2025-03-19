@@ -117,3 +117,7 @@ fetch("https://api.github.com/users/pawangrai")
 .catch(function(error){
     console.log(error);
 })
+
+// The reason fetch responses are being returned quicker than the timeout functions is because there is a separate priority queue assigned for fetch tasks called microtask queue or priority queue or fetch queue.
+
+// A fetch() promise only rejects when a network error is encountered (which is usually when there's a permission issue or similar). A fetch() promise does not reject on HTTP errors(404, etc). Instead, a then() handler must check Response.ok and/or Response.status properties. 
