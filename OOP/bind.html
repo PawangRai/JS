@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body style="background-color: #212121;">
+    <button>Click Me!!</button>
+</body>
+<script>
+    class React{
+        constructor(){
+            this.library = "React"
+            this.server = "https://localhost:3000/"
+
+            document
+            .querySelector("button")
+            .addEventListener("click", this.handleClick.bind(this)) // We have to use the bind keyword and manually pass the this keyword of the react class
+        }
+
+        handleClick(){
+            console.log("Button Clicked");
+            // console.log(this.server); This should work but its is giving us undefined, meaning it does not have access to the server. This happened because event listeners change this to the element that fired the event. In this case, the button element <Button> is the one that fired the event, so inside the handleClick method, this refers to the button, not the React class instance. In order to fix this, we need to bind the this inside handleClick to the react instance. 
+            console.log(this.server);
+        }
+    }
+
+    const app = new React()
+</script>
+</html>
